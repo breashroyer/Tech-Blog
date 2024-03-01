@@ -7,8 +7,6 @@ const blogRoutes = require('./routes/blogRoutes');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
 const path = require('path'); // Import the path module
-const routes = require('./routes'); // Import routes for dashboard, login, and registration pages
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Session configuration
 const sess = {
-  secret: process.env.SESSION_SECRET,
+  secret: 'Winnie01', // Add your secret key here
   cookie: {
     maxAge: 30 * 60 * 1000, // Sessions expire after 30 minutes of inactivity
     secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
@@ -47,8 +45,33 @@ app.use(session(sess));
 // Use routes from blogRoutes
 app.use('/', blogRoutes);
 
-// Use routes for dashboard, login, and registration pages
-app.use('/', routes);
+// Route handler for /dashboard
+app.get('/dashboard', (req, res) => {
+  // Render the dashboard.handlebars template
+  res.render('dashboard');
+});
+
+// Route handler for the login page
+app.get('/login', (req, res) => {
+  // Render the login.handlebars template
+  res.render('login');
+});
+
+// Route handler for handling login form submission
+app.post('/login', (req, res) => {
+  // Logic for handling login form submission
+});
+
+// Route handler for the register page
+app.get('/register', (req, res) => {
+  // Render the register.handlebars template
+  res.render('register');
+});
+
+// Route handler for handling registration form submission
+app.post('/register', (req, res) => {
+  // Logic for handling registration form submission
+});
 
 // Example route to render the homepage (if not handled in blogRoutes)
 app.get('/', (req, res) => {
@@ -57,4 +80,3 @@ app.get('/', (req, res) => {
 
 // Listen on the configured port
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
