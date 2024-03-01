@@ -1,14 +1,14 @@
-require('dotenv').config(); // Load environment variables from .env file at the start
+// server.js
 
 const express = require('express');
 const { engine } = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const sequelize = require('./config/connection');
-const blogRoutes = require('./routes/blogRoutes'); // Ensure this path is correct
-const app = express();
+const sequelize = require('./config/connection'); // Import the database connection configuration
+const blogRoutes = require('./routes/blogRoutes');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set up Handlebars middleware
@@ -53,3 +53,4 @@ app.get('/', (req, res) => {
 
 // Listen on the configured port
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
