@@ -7,6 +7,8 @@ const blogRoutes = require('./routes/blogRoutes');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
 const path = require('path'); // Import the path module
+const routes = require('./routes'); // Import routes for dashboard, login, and registration pages
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -45,6 +47,9 @@ app.use(session(sess));
 // Use routes from blogRoutes
 app.use('/', blogRoutes);
 
+// Use routes for dashboard, login, and registration pages
+app.use('/', routes);
+
 // Example route to render the homepage (if not handled in blogRoutes)
 app.get('/', (req, res) => {
   res.render('home');
@@ -52,5 +57,4 @@ app.get('/', (req, res) => {
 
 // Listen on the configured port
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 
