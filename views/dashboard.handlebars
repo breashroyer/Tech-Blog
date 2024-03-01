@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Dashboard</h1>
+        <div>
+            <!-- Display user's existing blog posts here -->
+            {{#each posts}}
+            <div>
+                <h2>{{title}}</h2>
+                <p>{{content}}</p>
+                <!-- Add any additional post details here -->
+            </div>
+            {{/each}}
+        </div>
+        <!-- Add a button/link to create a new post -->
+        <a href="/posts/new">Create New Post</a>
+    </main>
+
+    <footer>
+        <!-- Include footer content here -->
+    </footer>
+</body>
+
+</html>
