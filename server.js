@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const { engine } = require('express-handlebars');
 const session = require('express-session');
@@ -8,6 +6,7 @@ const sequelize = require('./config/connection'); // Import the database connect
 const blogRoutes = require('./routes/blogRoutes');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
+const path = require('path'); // Import the path module
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -17,7 +16,7 @@ app.set('view engine', 'handlebars');
 app.set('views', './views');
 
 // Serve static files
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
@@ -53,4 +52,5 @@ app.get('/', (req, res) => {
 
 // Listen on the configured port
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
